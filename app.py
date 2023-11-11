@@ -10,6 +10,8 @@ load_dotenv()
 GOOGLE_CLIENT_ID = os.getenv('GOOGLE_CLIENT_ID')
 GOOGLE_CLIENT_SECRET = os.getenv('GOOGLE_CLIENT_SECRET')
 
+
+
 app = Flask(__name__)
 app.secret_key = os.urandom(12)
 oauth = OAuth(app)
@@ -39,7 +41,7 @@ def google():
     session['nonce'] = generate_token()
     ##, note: if running in google shell, need to override redirect_uri 
     ## to the external web address of the shell, e.g.,
-    # redirect_uri = 'https://5000-cs-213132341638-default.cs-us-east1-pkhd.cloudshell.dev/google/auth/'
+    redirect_uri = 'https://5000-cs-531176737229-default.cs-us-east1-pkhd.cloudshell.dev/google/auth/'
     return oauth.google.authorize_redirect(redirect_uri, nonce=session['nonce'])
 
 @app.route('/google/auth/')
